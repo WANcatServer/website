@@ -27,15 +27,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="499.26168"
-     inkscape:cy="520.85465"
+     inkscape:cx="520.76168"
+     inkscape:cy="-39.14535"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="867"
-     inkscape:window-x="1920"
-     inkscape:window-y="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1015"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -145,13 +145,6 @@
          y="220.79143"
          style="font-size:7.05555534px;stroke-width:0.26458332">最近的活動</tspan></text>
     <rect
-       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#353535;stroke-width:0.765;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect954"
-       width="81.703079"
-       height="77.478294"
-       x="215.35674"
-       y="297.59857" />
-    <rect
        style="opacity:1;vector-effect:none;fill:#fffae2;fill-opacity:1;fill-rule:nonzero;stroke:#353535;stroke-width:0.66499996;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect956"
        width="296.79565"
@@ -187,17 +180,6 @@
          x="-383.0145"
          y="294.00659"
          style="fill:#2e2e2e;fill-opacity:1;stroke-width:0.26458332">drafts</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="219.66922"
-       y="305.93295"
-       id="text970"><tspan
-         sodipodi:role="line"
-         id="tspan968"
-         x="219.66922"
-         y="305.93295"
-         style="font-size:7.05555534px;stroke-width:0.26458332">分類</tspan></text>
     <rect
        style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#353535;stroke-width:0.66499996;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect972"
@@ -283,5 +265,16 @@
        height="44.979183"
        x="10.847918"
        y="232.44165" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:139.99999762%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="18.785416"
+       y="72.633331"
+       id="text4556"><tspan
+         sodipodi:role="line"
+         id="tspan4554"
+         x="18.785416"
+         y="72.633331"
+         style="stroke-width:0.26458332px">/dashboard</tspan></text>
   </g>
 </svg>

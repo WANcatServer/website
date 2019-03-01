@@ -58,12 +58,12 @@
 
 ## 使用技術
 
-* HTML + CSS + PHP
+* HTML + CSS
 * 登入用 Google / OpenID --- Oauth
 * 圖片自動上傳 imgur.com ，給 ![](xxx) 供複製 (需有一個系統帳號)
 * Markdown
 * 標籤分類（如有重複手動合併）
-* 後端：php（渲染頁面） + Go
+* 後端：Go
 * 
 
 # 知識庫
