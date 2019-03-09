@@ -19,6 +19,14 @@
 
 
 
+* 使用者資料：
+  * type User struct:
+    * ID string
+    * Name
+    * Email
+    * NickName
+    * JoinDate
+    * LastOnlineDate
 * 活動紀錄系統：一段時間後刪除（或一定訊息量）
   * type Record struct :
     * user
@@ -32,11 +40,14 @@
     * time
     * content
     * category
-    * tags
     * issue - link
     * reference
     * 知識庫
     * 論壇
+  * type Tag struct :
+    * id
+    * name
+    * question - link
 * 回報管理系統：
   * type Issue struct
     * id
@@ -44,5 +55,4 @@
     * time
     * question - link
     * content
-
 * 
