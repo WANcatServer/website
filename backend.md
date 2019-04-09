@@ -28,6 +28,14 @@
     * 訂閱通知
     * 成就達成通知
 
+* 使用者資料：
+  * type User struct:
+    * ID string
+    * Name
+    * Email
+    * NickName
+    * JoinDate
+    * LastOnlineDate
 * 活動紀錄系統：一段時間後刪除（或一定訊息量）
   * type Record struct :
     * user
@@ -41,12 +49,13 @@
     * time
     * content
     * category
-    * tags
-    * []Issue - link
     * reference
     * 知識庫
     * 論壇
-    * []answers - link
+  * type Tag struct :
+    * id
+    * name
+    * question - link
 * 回報管理系統：
   * type Issue struct
     * id
