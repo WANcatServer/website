@@ -1,53 +1,23 @@
-# 後端
+# 資料表格設計
 
-* 首頁 — Cookie 檢查登入，初次進入 Cookie 聲明
-* 登入 — 登入成功 301 Dashboard
-* Dashboard — 推薦題目、我的題目、最近活動（自己）、分類
-  * 推薦題目：偏好及推薦系統。
-  * 最近活動：Record 中 user == $user
-* 推薦系統 函數：時間、作答人數、評比
-* 題目網址 /\$username/\$question-name：
-  * /
-  * /answering   //答題頁面
-  * /show-answers   //答題後頁面
-  * /forum
-  * /reference
-  * /library
-  * /issue
+儲存技術：SQL （SQLite3, MariaDB, MySQL, PostgreSQL ...）
 
-----
+滿足資料庫第三正規化
 
-* 通知系統：
-  * 出題者：
-    * 批改通知
-    * 錯誤回報通知
-  * 作答者：
-    * 已批改通知
-    * 受理錯誤回報通知
-  * 使用者：
-    * 訂閱通知
-    * 成就達成通知
+**Max Length 用 Bytes 表示**
 
-  ## 資料表格設計
 
-  儲存技術：SQL （SQLite3, MariaDB, MySQL, PostgreSQL ...）
 
-  滿足資料庫第三正規化
+### 使用者 Users：
 
-  **Max Length 用 Bytes 表示**
-
-  
-
-  ### 使用者 Users：
-
-| Column     | Type       | Max Length          |
-| ---------- | :--------- | ------------------- |
-| ID         | INT        | 2,147,483,647       |
-| Name       | VARCHAR    | 65535               |
-| Avatar     | MEDIUMBLOB | 16,777,215          |
-| Email      | VARCHAR    | 65535               |
-| JoinDate   | DATETIME   | CCYY-MM-DD hh:mm:ss |
-| LastOnline | DATETIME   | CCYY-MM-DD hh:mm:ss |
+| Column     | Type       | Max Length              |
+| ---------- | :--------- | ----------------------- |
+| ID         | INT        | 2,147,483,647 (4 bytes) |
+| Name       | VARCHAR    | 65535                   |
+| Avatar     | MEDIUMBLOB | 16,777,215              |
+| Email      | VARCHAR    | 65535                   |
+| JoinDate   | DATETIME   | CCYY-MM-DD hh:mm:ss     |
+| LastOnline | DATETIME   | CCYY-MM-DD hh:mm:ss     |
 
 ### 問題 Questions：
 
@@ -146,4 +116,3 @@
 | *ID         | INT      |            |
 | User        | Users.ID |            |
 | Description | VARCHAR  | 255        |
-
