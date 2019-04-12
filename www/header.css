@@ -1,0 +1,134 @@
+header {
+    background-color: #fdffea;
+    font-size: 16px;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 1px #888, 0 2px 1px #aaa;
+}
+
+header span a, button {
+    margin: 0 20px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#center a {
+    padding: 9px;
+}
+
+#center a:hover {
+    background-color: #ff9;
+    border-bottom: 2px solid #ff8f52;
+    transition: all ease 0.2s;
+}
+
+a {
+    color: black;
+}   
+
+button,input[type=submit] {
+    background: none;
+    box-shadow: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    padding: 7px;
+}
+
+button:hover,input[type=submit]:hover {
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.Dpct {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.Dpct a {
+    background: #ffffea;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: block;
+    padding: 8px 16px;
+    min-width: 100px;
+}
+
+.Dpct a:hover {
+    background-color: #ff9;
+    border-left: 5px solid #ff8f52;
+    box-sizing: border-box;
+    transition: all ease 0.3s;
+}
+
+#ntfct-dpct {
+    width: 400px;
+    right: 90px;
+}
+
+#logged-out {
+    display: none;
+}
+
+#logged-out button {
+    border-radius: 5px;
+    width: 50px;
+}
+
+input[type=text], input[type=password] {
+    margin: 10px;
+    padding: 12px 18px;
+    width: 100%;
+}
+
+#login-botton {
+    background-color: #dfb;
+    border: solid 1px;
+}
+
+.form-container {
+    background-color: #000;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.animate {
+    animation: animatezoom 0.6s;
+    background-color: #ffffea;
+    border: #666 1px solid;
+    margin: 10% auto 15%;
+    padding: 50px;
+    width: 300px;
+}
+
+@keyframes animatezoom {
+    from {
+        transform: scale(0.5)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+
+#policy {
+    font-size: 12px;
+}
+
+#policy a,#fgpsw {
+    color: blue;
+    font-size: 12px;
+}
