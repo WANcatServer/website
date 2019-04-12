@@ -73,6 +73,7 @@
 | Content   | TEXT         | 65535         |
 | Time      | DATETIME     |               |
 | Displayed | BOOL         |               |
+| Solved    | BOOL         |               |
 
 
 
@@ -102,16 +103,23 @@
 
 
 
-### 評價 Votes
+### 題目評價 QuestionVotes
 
-| Column     | Type     | Max Length |
-| ---------- | -------- | ---------- |
-| *User      | Users.ID |            |
-| *ObjectID  |          |            |
-| Evaluation |          |            |
-| Time       | DATETIME |            |
+| Column     | Type         | Max Length |
+| ---------- | ------------ | ---------- |
+| *User      | Users.ID     |            |
+| *Question  | Questions.ID |            |
+| Evaluation | BOOL         |            |
+| Time       | DATETIME     |            |
 
+### 作答評價 AnswerVotes
 
+| Column     | Type       | Max Length |
+| ---------- | ---------- | ---------- |
+| *User      | Users.ID   |            |
+| *Answer    | Answers.ID |            |
+| Evaluation | BOOL       |            |
+| Time       | DATETIME   |            |
 
 ### 分類 Categories
 
