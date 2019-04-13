@@ -10,28 +10,27 @@
 
 ### 使用者 Users：
 
-| Column     | Type       | Max Length              |
-| ---------- | :--------- | ----------------------- |
-| ID         | INT        | 2,147,483,647 (4 bytes) |
-| Name       | VARCHAR    | 65535                   |
-| Avatar     | MEDIUMBLOB | 16,777,215              |
-| Email      | VARCHAR    | 65535                   |
-| JoinDate   | DATETIME   | CCYY-MM-DD hh:mm:ss     |
-| LastOnline | DATETIME   | CCYY-MM-DD hh:mm:ss     |
+| Column     | Type     | Max Length              |
+| ---------- | :------- | ----------------------- |
+| ID         | INT      | 2,147,483,647 (4 bytes) |
+| Name       | VARCHAR  | 65535                   |
+| Avatar     | VARCHAR  | 65,535                  |
+| Email      | VARCHAR  | 65535                   |
+| JoinDate   | DATETIME | CCYY-MM-DD hh:mm:ss     |
+| LastOnline | DATETIME | CCYY-MM-DD hh:mm:ss     |
 
 ### 問題 Questions：
 
-| Column     | Type          | Max Length    |
-| ---------- | ------------- | ------------- |
-| ID         | INT           | 2,147,483,647 |
-| User       | Users.ID      |               |
-| Title      | VARCHAR       | 255           |
-| Content    | MEDIUMTEXT    | 16,772,215    |
-| BestAnswer | Answers.ID    |               |
-| Created    | DATETIME      |               |
-| Updated    | DATETIME      |               |
-| Reference  | TEXT          | 65535         |
-| Category   | Categories.ID |               |
+| Column     | Type       | Max Length    |
+| ---------- | ---------- | ------------- |
+| ID         | INT        | 2,147,483,647 |
+| User       | Users.ID   |               |
+| Title      | VARCHAR    | 255           |
+| Content    | MEDIUMTEXT | 16,772,215    |
+| BestAnswer | Answers.ID |               |
+| Created    | DATETIME   |               |
+| Updated    | DATETIME   |               |
+| Reference  | TEXT       | 65535         |
 
 ### 答案 Answers
 
@@ -69,7 +68,7 @@
 | Type     | ENUM('Answer', 'Issue')       |               |
 | ObjectID | INT //Answers.ID OR Issues.ID |               |
 | Time     | DATETIME                      |               |
-| Message  | TEXT                          | 65,535        |
+| Content  | TEXT                          | 65,535        |
 
 
 
@@ -116,3 +115,5 @@
 | *ID         | INT      |            |
 | User        | Users.ID |            |
 | Description | VARCHAR  | 255        |
+| Time        | DATETIME |            |
+
