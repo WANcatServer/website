@@ -35,6 +35,58 @@ func getUser(w http.ResponseWriter, r *http.Request) *User {
 }
 
 func join(w http.ResponseWriter, r *http.Request) {
+	if getUser(w, r) != nil {
+		http.Redirect(w, r, "/logout", 303)
+		return
+	}
+	if r.Method != "POST" {
+		tpl.ExecuteTemplate(w, "join.html", "")
+		return
+	}
+	r.ParseForm()
+	username := r.FormValue("username")
+	email := r.FormValue("email")
+	password := r.FormValue("password")
+	q := `
+	SELECT COUNT(1) FROM Users WHERE Email = ?
+	`
+	row := db.QueryRow(q, email)
+	var count int
+	err := row.Scan(&count)
+	if err != nil {
+		log.Fatal("Query Error: ", err)
+	}
+	if count != 0 {
+		// The email already exist
+		tpl.ExecuteTemplate(w, "join.html", "Email already exist.")
+		return
+	}
+	hashPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		log.Fatalln("Password generate error: ", err)
+	}
+	result, err := db.Exec(`
+	INSERT INTO Users (Name, Email, Password, JoinDate)
+	VALUES (?, ?, ?, CURRENT_TIMESTAMP())
+	`, username, email, hashPassword)
+	if err != nil {
+		log.Fatalln("Insert user fatal: ", err)
+	}
+	userID, _ := result.LastInsertId()
+	sessionUUID := uuid.Must(uuid.NewV4())
+	session := sessionUUID.String()
+	_, err = db.Exec(`
+	INSERT INTO Sessions 
+	VALUES (?, ?, CURRENT_TIMESTAMP())	
+	`, session, userID)
+	if err != nil {
+		log.Fatalln("Insert new session fatal: ", err)
+	}
+	http.SetCookie(w, &http.Cookie{
+		Name:  "session",
+		Value: session,
+	})
+	http.Redirect(w, r, "/dashboard", 303)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -88,6 +140,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		Name:  "session",
 		Value: session,
 	})
+	http.Redirect(w, r, "/dashboard", 303)
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
