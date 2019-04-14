@@ -18,6 +18,7 @@
 | Email      | VARCHAR  | 65535                   |
 | JoinDate   | DATETIME | CCYY-MM-DD hh:mm:ss     |
 | LastOnline | DATETIME | CCYY-MM-DD hh:mm:ss     |
+| Password   | BLOB     | 65,535                  |
 
 ### 問題 Questions：
 
@@ -116,4 +117,12 @@
 | User        | Users.ID |            |
 | Description | VARCHAR  | 255        |
 | Time        | DATETIME |            |
+
+### 登入狀態 Session
+
+| Column   | Type      | Max Length |
+| -------- | --------- | ---------- |
+| ID       | BLOB      | 65,535     |
+| User     | Users.ID  |            |
+| LastUsed | TIMESTAMP |            |
 

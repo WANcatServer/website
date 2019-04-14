@@ -3,6 +3,7 @@ CREATE TABLE Users (
 	Name VARCHAR(255) NOT NULL,
 	Avatar VARCHAR(255),
 	Email VARCHAR(255) NOT NULL,
+	Password BLOB ,
 	JoinDate DATETIME,
 	LastOnline DATETIME
 );
@@ -48,10 +49,27 @@ CREATE TABLE QuestionVotes (
 	User INT,
 	Question INT,
 	Evaluation BOOL NOT NULL DEFAULT 1,
-	Time DATETIME DEFAULT CURRENT_TIMESTAMP(),
+	Time DATETIME , 
 	PRIMARY KEY (User, Question),
 	FOREIGN KEY (User) REFERENCES Users (ID),
 	FOREIGN KEY (Question) REFERENCES Questions (ID)
 );
 
 
+CREATE TABLE AnswerVotes (
+	User INT,
+	Answer INT,
+	Evaluation BOOL NOT NULL DEFAULT 1,
+	Time DATETIME , 
+	PRIMARY KEY (User, Answer),
+	FOREIGN KEY (User) REFERENCES Users (ID),
+	FOREIGN KEY (Answer) REFERENCES Answers (ID)
+);
+
+CREATE TABLE Sessions (
+	ID CHAR(36),
+	User INT NOT NULL,
+	LastUsed TIMESTAMP NOT NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (User) REFERENCES Users (ID)
+)

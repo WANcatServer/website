@@ -1,43 +1,44 @@
+{{define "header"}}
 <link rel="stylesheet" href="header.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <i id="i"></i>
 <header>    
-    <span id="left">
-        <a class="material-icons" href="#" title="首頁">lightbulb_outline</a>
-        <button class="material-icons" title="幫助">help_outline</button>
-    </span>
-    <span id="center">
-        <a href="#">問題區</a>
-        <a href="#">知識庫</a>
-    </span>
-    <span id="right">
-        <span id="logged-out">
-            <button class="popUp" id="login" onclick="popUp('login-form')">登入</button>
-            <button class="popUp" id="singUp" onclick="popUp('signUp-form')">註冊</button>
-        </span>
-        <span id="logged-in">
-            <span id="notification">
+	<span id="left">
+		<a class="material-icons" href="#" title="首頁">lightbulb_outline</a>
+		<button class="material-icons" title="幫助">help_outline</button>
+	</span>
+	<span id="center">
+		<a href="#">問題區</a>
+		<a href="#">知識庫</a>
+	</span>
+	<span id="right">
+		<span id="logged-out">
+			<button class="popUp" id="login" onclick="popUp('login-form')">登入</button>
+			<button class="popUp" id="singUp" onclick="popUp('signUp-form')">註冊</button>
+		</span>
+		<span id="logged-in">
+			<span id="notification">
                 <button class="material-icons popUp" onclick="popUp('ntfct-dpct')"
                     title="通知">notifications_none</button>
                 <div class="Dpct" id="ntfct-dpct">
-                    <a href="#">通知一</a>
-                    <a href="#">通知二</a>
-                    <a href="#">通知三</a>
+					{{range .Notifications }}
+					<a href="#">通知一</a>
+					{{end}}
                     <a href="#" style="text-align: center;">所有通知</a>
                 </div>
-            </span>
-            <span id="menu">
-                <button class="material-icons popUp" onclick="popUp('menu-dpct')" title="選單">menu</button>
-                <div class="Dpct" id="menu-dpct">
-                    <a href="#">個人頁面</a>
-                    <a href="#">設定</a>
-                    <a onclick="logOut()">登出</a>
-                </div>
-            </span>
-        </span>
+			</span>
+			<span id="menu">
+				<button class="material-icons popUp" onclick="popUp('menu-dpct')" title="選單">menu</button>
+				<div class="Dpct" id="menu-dpct">
+					<a href="/u/{{.User.ID}}">個人頁面</a>
+					<a href="/setting">設定</a>
+					<a onclick="logOut()">登出</a>
+				</div>
+			</span>
+		</span>
     </span>
 </header>
-<form action="" class="form-container" id="login-form" method="post">
+<form action="/login" class="form-container" id="login-form" method="post">
     <div class="animate">
         <h2>登入</h2>
         <label for="uname"><b>帳號</b></label>
@@ -48,7 +49,7 @@
         <a href="#" id="fgpsw">忘記密碼</a>
     </div>
 </form>
-<form action="" class="form-container" id="signUp-form" method="post">
+<form action="/join" class="form-container" id="signUp-form" method="post">
     <div class="animate">
         <h2>註冊</h2>
         <label for="uname"><b>名稱</b></label>
@@ -61,8 +62,9 @@
         <input id="psw2" name="confirm" onkeyup="validate()" required type="text">
         <p id="match"></p>
         <input id="signUp-submit" type="submit" value="註冊">
-        <span id="policy"><input name="read" required type="checkbox">我已閱讀並同意<a href="">使用條款</a></span>
+		<span id="policy"><input name="read" required type="checkbox">我已閱讀並同意<a href="">使用條款</a></span>
 
-    </div>
+	</div>
 </form>
 <script src="header.js"></script>
+{{end}}
