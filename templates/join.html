@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Join</title>
+  </head>
+  <body>
+    {{template "header"}}
+    <p>{{.}}</p>
+    <form action="/join" class="form-container" id="signUp-form" method="post">
+      <div class="animate">
+          <h2>註冊</h2>
+          <label for="uname"><b>名稱</b></label>
+          <input name="uname" required type="text">
+          <label for="email"><b>電子郵件</b></label>
+          <input name="email" required type="text">
+          <label for="psw"><b>密碼</b></label>
+          <input id="psw1" name="psw" required type="text">
+          <label for="confirm"><b>確認密碼</b></label>
+          <input id="psw2" name="confirm" onkeyup="validate()" required type="text">
+          <p id="match"></p>
+          <input id="signUp-submit" type="submit" value="註冊">
+      <span id="policy"><input name="read" required type="checkbox">我已閱讀並同意<a href="">使用條款</a></span>
+    </div>
+  </form>
+  </body>
+</html>

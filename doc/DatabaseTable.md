@@ -13,12 +13,14 @@
 | Column     | Type     | Max Length              |
 | ---------- | :------- | ----------------------- |
 | ID         | INT      | 2,147,483,647 (4 bytes) |
-| Name       | VARCHAR  | 65535                   |
+| Name       | VARCHAR  | 255                   |
 | Avatar     | VARCHAR  | 65,535                  |
 | Email      | VARCHAR  | 65535                   |
 | JoinDate   | DATETIME | CCYY-MM-DD hh:mm:ss     |
 | LastOnline | DATETIME | CCYY-MM-DD hh:mm:ss     |
 | Password   | BLOB     | 65,535                  |
+| Nickname | VARCHAR | |
+| Description | TEXT | |
 
 ### 問題 Questions：
 

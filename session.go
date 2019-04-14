@@ -17,13 +17,14 @@ func getUser(w http.ResponseWriter, r *http.Request) *User {
 	}
 	session := cookie.Value
 	q := `
-	SELECT U.*
+	SELECT U.ID
 	FROM Sessions S, Users U
 	WHERE S.ID = ? AND U.ID = S.User
 	`
 	raw := db.QueryRow(q, session)
-	var user *User
-	err = raw.Scan(user)
+	user := new(User)
+	var userID int
+	err = raw.Scan(&userID)
 	if err == sql.ErrNoRows {
 		cookie.MaxAge = -1
 		http.SetCookie(w, cookie)
@@ -31,6 +32,7 @@ func getUser(w http.ResponseWriter, r *http.Request) *User {
 	} else if err != nil {
 		log.Fatal("raw scan fatal: ", err)
 	}
+	user.ID = userID
 	return user
 }
 
@@ -40,37 +42,27 @@ func join(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method != "POST" {
-		tpl.ExecuteTemplate(w, "join.html", "")
+		err := tpl.ExecuteTemplate(w, "join.html", "")
+		if err != nil {
+			log.Fatalln(err)
+		}
 		return
 	}
-	r.ParseForm()
-	username := r.FormValue("username")
+	username := r.FormValue("uname")
 	email := r.FormValue("email")
-	password := r.FormValue("password")
-	q := `
-	SELECT COUNT(1) FROM Users WHERE Email = ?
-	`
-	row := db.QueryRow(q, email)
-	var count int
-	err := row.Scan(&count)
-	if err != nil {
-		log.Fatal("Query Error: ", err)
-	}
-	if count != 0 {
-		// The email already exist
-		tpl.ExecuteTemplate(w, "join.html", "Email already exist.")
-		return
-	}
+	password := r.FormValue("psw")
 	hashPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		log.Fatalln("Password generate error: ", err)
 	}
 	result, err := db.Exec(`
 	INSERT INTO Users (Name, Email, Password, JoinDate)
-	VALUES (?, ?, ?, CURRENT_TIMESTAMP())
+	VALUES (?, ?, ?, CURRENT_TIMESTAMP());
 	`, username, email, hashPassword)
 	if err != nil {
-		log.Fatalln("Insert user fatal: ", err)
+		log.Println(err)
+		http.Error(w, err.Error(), 500)
+		return
 	}
 	userID, _ := result.LastInsertId()
 	sessionUUID := uuid.Must(uuid.NewV4())
@@ -99,14 +91,14 @@ func login(w http.ResponseWriter, r *http.Request) {
 		tpl.ExecuteTemplate(w, "login.html", "")
 		return
 	}
-	email := r.FormValue("email")
-	password := r.FormValue("password")
+	uname := r.FormValue("uname")
+	password := r.FormValue("psw")
 	q := `
 	SELECT ID, Password
 	FROM Users
-	WHERE Email = ?
+	WHERE Email = ? OR Name = ?
 	`
-	row := db.QueryRow(q, email)
+	row := db.QueryRow(q, uname, uname)
 	var id int
 	var hashPassword []byte
 	err := row.Scan(&id, &hashPassword)
@@ -167,4 +159,5 @@ func logout(w http.ResponseWriter, r *http.Request) {
 	}
 	cookie.MaxAge = -1
 	http.SetCookie(w, cookie)
+	http.Redirect(w, r, "/", 303)
 }

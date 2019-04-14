@@ -9,14 +9,14 @@ import (
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
-	_ "github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 var tpl *template.Template
 var db *sql.DB
 
 func init() {
-	tpl = template.Must(template.ParseGlob("./template/*.html"))
+	tpl = template.Must(template.ParseGlob("./templates/*.html"))
 	dbInit()
 }
 
@@ -24,7 +24,8 @@ func dbInit() {
 	user := os.Getenv("DB_USER")
 	pw := os.Getenv("DB_PASSWORD")
 	connection := fmt.Sprintf("%s:%s@unix(/var/run/mysqld/mysqld.sock)/practiceDB", user, pw)
-	db, err := sql.Open("mysql", connection)
+	var err error
+	db, err = sql.Open("mysql", connection)
 	if err != nil {
 		log.Fatal("Database init fatal: ", err)
 	}
@@ -34,6 +35,9 @@ func dbInit() {
 }
 
 func main() {
+	dbInit()
+	defer db.Close()
+	log.Println(db)
 	log.Println("Website Launch on http://localhost:8080")
 	http.Handle("/", http.FileServer(http.Dir("www")))
 	http.HandleFunc("/login", login)
