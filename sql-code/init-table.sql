@@ -1,11 +1,13 @@
 CREATE TABLE Users (
 	ID INT AUTO_INCREMENT PRIMARY KEY,
-	Name VARCHAR(255) NOT NULL,
+	Name VARCHAR(32) NOT NULL UNIQUE,
 	Avatar VARCHAR(255),
-	Email VARCHAR(255) NOT NULL,
+	Email VARCHAR(64) NOT NULL UNIQUE,
 	Password BLOB ,
 	JoinDate DATETIME,
-	LastOnline DATETIME
+	LastOnline DATETIME,
+	Nickname VARCHAR(255),
+	Description TEXT
 );
 
 CREATE TABLE Questions (
@@ -72,4 +74,27 @@ CREATE TABLE Sessions (
 	LastUsed TIMESTAMP NOT NULL,
 	PRIMARY KEY (ID),
 	FOREIGN KEY (User) REFERENCES Users (ID)
-)
+);
+
+CREATE TABLE IssueReplies (
+        ID INT,
+        User INT NOT NULL,
+        Issue INT NOT NULL,
+        Time DATETIME NOT NULL,
+        Content TEXT NOT NULL,
+        PRIMARY KEY (ID),
+        FOREIGN KEY (User) REFERENCES Users (ID),
+        FOREIGN KEY (Issue) REFERENCES Issues (ID)
+);
+
+
+CREATE TABLE AnswerReplies (
+	ID INT,
+	User INT NOT NULL,
+	Answer INT NOT NULL,
+	Time DATETIME NOT NULL,
+	Content TEXT NOT NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (User) REFERENCES Users (ID),
+	FOREIGN KEY (Answer) REFERENCES Answers (ID)
+);

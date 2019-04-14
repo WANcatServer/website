@@ -62,16 +62,27 @@
 
 
 
-### 回覆 Replies
+### 回報回覆 IssueReplies
 
-| Column   | Type                          | Max Length    |
-| -------- | ----------------------------- | ------------- |
-| ID       | INT                           | 2,147,483,647 |
-| User     | Users.ID                      |               |
-| Type     | ENUM('Answer', 'Issue')       |               |
-| ObjectID | INT //Answers.ID OR Issues.ID |               |
-| Time     | DATETIME                      |               |
-| Content  | TEXT                          | 65,535        |
+| Column  | Type      | Max Length    |
+| ------- | --------- | ------------- |
+| ID      | INT       | 2,147,483,647 |
+| User    | Users.ID  |               |
+| Issue   | Issues.ID |               |
+| Time    | DATETIME  |               |
+| Content | TEXT      | 65,535        |
+
+
+
+### 答案回覆 AnswerReplies
+
+| Column  | Type       | Max Length    |
+| ------- | ---------- | ------------- |
+| ID      | INT        | 2,147,483,647 |
+| User    | Users.ID   |               |
+| Answer  | Answers.ID |               |
+| Time    | DATETIME   |               |
+| Content | TEXT       | 65,535        |
 
 
 
